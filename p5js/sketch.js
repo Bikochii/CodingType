@@ -5,9 +5,9 @@ let colors = ["#ffffff"];
 let img;
 
 // Einstellungen für Mausbeeinflussung
-const THICKNESS = Math.pow(100, 1.6);
+const THICKNESS = Math.pow(90, 1.6);
 const EASE = 0.25;
-const DRAG = 1.25;
+const DRAG = 1.85;
 const BGCOLOR = 0;
 
 function setup() {
@@ -17,12 +17,10 @@ function setup() {
   background(BGCOLOR);
 
   fill(colors);
-  rect(100, 260, 600, 400);
+  rect(160, 260, 600, 500);
 
   // Canvas in Partikel umwandeln
   rasterize();
-
-  noCursor();
 }
 
 function draw() {
@@ -35,7 +33,7 @@ function draw() {
     let d = (dx = mouseX - particle.x) * dx + (dy = mouseY - particle.y) * dy;
     let f = -THICKNESS / d;
 
-    if (d + 500 < THICKNESS) {
+    if (d + 400 < THICKNESS) {
       t = Math.atan2(dy, dx);
       particle.vx += f * Math.cos(t);
       particle.vy += f * Math.sin(t);
@@ -56,8 +54,8 @@ function draw() {
 }
 
 function rasterize() {
-  let spacing = 4;
-  let tilesX = 50;
+  let spacing = 5;
+  let tilesX = 120;
   let tilesY = tilesX;
 
   let tileWidth = width / tilesX - spacing;
@@ -106,12 +104,12 @@ class Particle {
     this.y += (this.vy *= DRAG) + (this.oy - this.y) * EASE;
 
     push();
-    translate(this.x - 250, this.y - 200);
+    translate(this.x, this.y);
     noStroke();
     fill(this.color);
     textSize(20);
     // circle(0, 0, this.r);
-    text("Arten", this.x + 185, this.y - 90);
+    text("Arten", this.x - 220, this.y - 250);
     pop();
   }
 }
