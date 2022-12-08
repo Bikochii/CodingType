@@ -2,34 +2,29 @@ let c;
 let particles = [];
 let mouseVector;
 let colors = ["#ffffff"];
-let img;
 
 // Einstellungen für Mausbeeinflussung
-const THICKNESS = Math.pow(130, 1.5);
+const THICKNESS = Math.pow(50, 2);
 const EASE = 0.25;
-const DRAG = 1.75;
+const DRAG = 0.95;
 const BGCOLOR = 0;
 
 function setup() {
-  img = loadImage("Creative-Mind-Text-1080x608.jpg");
-  c = createCanvas(1920, 1000);
+  c = createCanvas(800, 800);
 
   // Elemente auf der Zeichenfläche
-  //background(BGCOLOR);
+  background(BGCOLOR);
 
   fill(colors);
-  rect(370, 160, 550, 300);
+  rect(200, 460, 400, 200);
 
   // Canvas in Partikel umwandeln
   rasterize();
-
-  noCursor();
 }
 
 function draw() {
   // Partikelanimation
   background(BGCOLOR);
-  background(img);
 
   for (let i = 0; i < particles.length; i++) {
     let particle = particles[i];
@@ -37,7 +32,7 @@ function draw() {
     let d = (dx = mouseX - particle.x) * dx + (dy = mouseY - particle.y) * dy;
     let f = -THICKNESS / d;
 
-    if (d + 400 < THICKNESS) {
+    if (d < THICKNESS) {
       t = Math.atan2(dy, dx);
       particle.vx += f * Math.cos(t);
       particle.vy += f * Math.sin(t);
@@ -46,20 +41,15 @@ function draw() {
     particle.draw();
 
     textSize(20);
-    fill("red");
+    fill(255);
     textAlign(CENTER);
-    //textFont("Helvetica");
-    text(
-      "Zum ersten Mal erleben wir, dass eine einzelne Art für das Aussterben extrem vieler anderer Arten verantwortlich ist.",
-      655,
-      height / 6.5
-    );
+    text("250+ Beschäftigte", 280, height / 2);
   }
 }
 
 function rasterize() {
-  let spacing = 5;
-  let tilesX = 120;
+  let spacing = 4;
+  let tilesX = 50;
   let tilesY = tilesX;
 
   let tileWidth = width / tilesX - spacing;
@@ -108,12 +98,10 @@ class Particle {
     this.y += (this.vy *= DRAG) + (this.oy - this.y) * EASE;
 
     push();
-    translate(this.x - 600, this.y - 100);
+    translate(this.x, this.y);
     noStroke();
     fill(this.color);
-    textSize(20);
-    // circle(0, 0, this.r);
-    text("Arten", this.x, this.y);
+    circle(0, 0, this.r);
     pop();
   }
 }
