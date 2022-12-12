@@ -5,20 +5,19 @@ let colors = ["#ffffff"];
 let img;
 
 // Einstellungen für Mausbeeinflussung
-const THICKNESS = Math.pow(130, 1.5);
+const THICKNESS = Math.pow(130, 1.45);
 const EASE = 0.25;
-const DRAG = 1.75;
+const DRAG = 1.45;
 const BGCOLOR = 0;
 
 function setup() {
-  img = loadImage("Creative-Mind-Text-1080x608.jpg");
-  c = createCanvas(1920, 1000);
-
+  img = loadImage("new2.png");
+  c = createCanvas(1480, 850);
   // Elemente auf der Zeichenfläche
-  //background(BGCOLOR);
+  background(BGCOLOR);
 
   fill(colors);
-  rect(370, 160, 550, 300);
+  rect(290, 90, 750, 500);
 
   // Canvas in Partikel umwandeln
   rasterize();
@@ -29,8 +28,7 @@ function setup() {
 function draw() {
   // Partikelanimation
   background(BGCOLOR);
-  background(img);
-
+  background(img, 1080, 608);
   for (let i = 0; i < particles.length; i++) {
     let particle = particles[i];
 
@@ -49,17 +47,17 @@ function draw() {
     fill("red");
     textAlign(CENTER);
     //textFont("Helvetica");
-    text(
+    /* text(
       "Zum ersten Mal erleben wir, dass eine einzelne Art für das Aussterben extrem vieler anderer Arten verantwortlich ist.",
       655,
       height / 6.5
-    );
+    ); */
   }
 }
 
 function rasterize() {
-  let spacing = 5;
-  let tilesX = 120;
+  let spacing = 50;
+  let tilesX = 100;
   let tilesY = tilesX;
 
   let tileWidth = width / tilesX - spacing;
@@ -111,9 +109,10 @@ class Particle {
     translate(this.x - 600, this.y - 100);
     noStroke();
     fill(this.color);
-    textSize(20);
+    textSize(25);
+    //textFont("newtimesroman");
     // circle(0, 0, this.r);
-    text("Arten", this.x, this.y);
+    text("species", this.x, this.y);
     pop();
   }
 }
