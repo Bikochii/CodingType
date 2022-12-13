@@ -10,14 +10,18 @@ const EASE = 0.25;
 const DRAG = 1.45;
 const BGCOLOR = 0;
 
+function preload() {
+  fontRegular = loadFont("SpaceMono-Regular.ttf");
+}
+
 function setup() {
-  img = loadImage("new2.png");
+  img = loadImage("ct.png");
   c = createCanvas(1480, 850);
   // Elemente auf der Zeichenfläche
   background(BGCOLOR);
 
   fill(colors);
-  rect(290, 90, 750, 500);
+  rect(290, 90, 700, 380);
 
   // Canvas in Partikel umwandeln
   rasterize();
@@ -106,13 +110,14 @@ class Particle {
     this.y += (this.vy *= DRAG) + (this.oy - this.y) * EASE;
 
     push();
-    translate(this.x - 600, this.y - 100);
+    translate(this.x - 525, this.y - 100);
     noStroke();
     fill(this.color);
     textSize(25);
-    //textFont("newtimesroman");
+    // textFont(fontRegular);
     // circle(0, 0, this.r);
     text("species", this.x, this.y);
+
     pop();
   }
 }
