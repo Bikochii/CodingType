@@ -8,7 +8,8 @@ let img;
 const THICKNESS = Math.pow(130, 1.45);
 const EASE = 0.25;
 const DRAG = 1.45;
-const BGCOLOR = 0;
+const BGCOLOR = ["#ff7000"];
+// Blau #044ff4 Orange #ff7000 Beige #ffd8bc Grau #b3b3b3
 
 function preload() {
   fontRegular = loadFont("SpaceMono-Regular.ttf");
@@ -21,7 +22,7 @@ function setup() {
   background(BGCOLOR);
 
   fill(colors);
-  rect(290, 90, 700, 380);
+  rect(290, 90, 700, 360);
 
   // Canvas in Partikel umwandeln
   rasterize();
@@ -60,8 +61,8 @@ function draw() {
 }
 
 function rasterize() {
-  let spacing = 50;
-  let tilesX = 100;
+  let spacing = 40;
+  let tilesX = 125;
   let tilesY = tilesX;
 
   let tileWidth = width / tilesX - spacing;
@@ -116,7 +117,7 @@ class Particle {
     textSize(25);
     // textFont(fontRegular);
     // circle(0, 0, this.r);
-    text("species", this.x, this.y);
+    text("biodiversity", this.x, this.y);
 
     pop();
   }
